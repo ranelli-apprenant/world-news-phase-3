@@ -65,7 +65,7 @@ services:
       - reader-front-node_modules:/app/node_modules
     command: npm run dev
     environment :
-      - VITE_API_URL=http://localhost:3000    # url du backend pour l'utiliser au frontend (utiliser le port des conteneurs)
+      - VITE_API_URL=http://localhost:3001    # url du backend pour l'utiliser au frontend (utiliser le port des conteneurs)
 
   
 volumes:
