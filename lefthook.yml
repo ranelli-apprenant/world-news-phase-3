@@ -1,4 +1,5 @@
 pre-commit:
   commands:
-    test:
-      run: echo "Le hook pre-commit fonctionne !"
+    test_writer_front:
+      run: echo "Le hook pre-commit pour writer-front fonctionne !"
+      cwd: wn-rajar-ms_writer/writer-front
