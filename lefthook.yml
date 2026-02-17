@@ -2,6 +2,6 @@ pre-commit:
   commands:
     test_writer_front:
       root: "wn-rajar-ms_writer/writer-front/"
-      glob: "*.{ts,tsx}"
+      glob: "**/*.{ts,tsx}"
       run: npx tsc --noEmit
 
