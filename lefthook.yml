@@ -1,12 +1,12 @@
 pre-commit:
   parallel: true
   commands:
-    test_writer_back:
+    verification_writer_back:
       root: "wn-rajar-ms_writer/writer-back"
       glob: "**/*.ts"
       run: npx tsc --noEmit
 
-    test_writer_front:
+    verification_writer_front:
       root: "wn-rajar-ms_writer/writer-front/"
       glob: "**/*.{ts,tsx,jsx}"
       run: |
@@ -14,12 +14,12 @@ pre-commit:
           npx tsc --jsx react-jsx --strict --noEmit "$file"
         done
     
-    test_reader_front:
+    verification_reader_front:
       root: "wn-rajar-ms_reader/reader-front"
       glob: "**/*.{js,jsx}"
       run: npx eslint {staged_files}
 
-    test_reader_back:
+    verification_reader_back:
       root: "wn-rajar-ms_reader/reader-back"
       glob: "**/*.js"
       run: |
