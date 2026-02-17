@@ -1,5 +1,11 @@
 pre-commit:
+  parallel: true
   commands:
+    test_writer_back:
+      root: "wn-rajar-ms_writer/writer-back"
+      glob: "**/*.ts"
+      run: npx tsc --noEmit
+
     test_writer_front:
       root: "wn-rajar-ms_writer/writer-front/"
       glob: "**/*.{ts,tsx,jsx}"
