@@ -13,4 +13,9 @@ pre-commit:
         for file in {staged_files}; do
           npx tsc --jsx react-jsx --strict --noEmit "$file"
         done
+    
+    test_reader_front:
+      root: "wn-rajar-ms_reader/reader-front"
+      glob: "**/*.{js,jsx}"
+      run: npx eslint {staged_files}
 
