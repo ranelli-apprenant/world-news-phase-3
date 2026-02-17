@@ -19,3 +19,11 @@ pre-commit:
       glob: "**/*.{js,jsx}"
       run: npx eslint {staged_files}
 
+    test_reader_back:
+      root: "wn-rajar-ms_reader/reader-back"
+      glob: "**/*.js"
+      run: |
+        for file in {staged_files}; do
+          node --check "$file"
+        done
+
