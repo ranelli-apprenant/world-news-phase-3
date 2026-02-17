@@ -1,6 +1,6 @@
 pre-commit:
   commands:
     test_writer_front:
-      root: "wn-rajar-ms_writer/writer-front"
+      root: "wn-rajar-ms_writer/writer-front/"
       glob: "*.{ts, tsx}"
       run: echo 'Verification rapide des fichiers TSX'
