@@ -22,6 +22,7 @@ services:
       - "3000:3000"           # SUPPRIMER EN PROD(à gauche ce qui est appelé par le navigateur, à droite ce qu'y est appelé par les conteneurs/environnement)
     volumes:
       - ./wn-rajar-ms_writer/writer-back:/app    # fait le reload du dossier sans avoir besoin de faire un nouveau build (hot-reload)
+      - writer-back-node_modules:/app/node_modules    # protège les node_modules pour éviter qu'ils se fassent écraser
     env_file:
       - ./wn-rajar-ms_writer/writer-back/.env   # injection des variables
     command: npm run dev      # commande pour lancer le backend
@@ -35,9 +36,11 @@ services:
       - "5173:5173"
     volumes:
       - ./wn-rajar-ms_writer/writer-front:/app
+      - writer-front-node_modules:/app/node_modules
     command: npm run dev
     environment :
       - VITE_API_URL=http://writer-back:3000/api    # url du backend pour l'utiliser au frontend
+
 
   reader-back:
     build: ./wn-rajar-ms_reader/reader-back      # va lire le Dockerfile dans ce dossier pour faire le premier build
@@ -45,12 +48,14 @@ services:
       - "3001:3000"           # SUPPRIMER EN PROD (à gauche ce qui est appelé par le navigateur, à droite ce qu'y est appelé par les conteneurs/environnement)
     volumes:
       - ./wn-rajar-ms_reader/reader-back:/app    # fait le reload du dossier sans avoir besoin de faire un nouveau build (hot-reload)
+      - reader-back-node_modules:/app/node_modules
     env_file:
       - ./wn-rajar-ms_reader/reader-back/.env
     command: npm run dev      # commande pour lancer le backend
     depends_on:
       db:
         condition: service_healthy
+
   
   reader-front:
     build: ./wn-rajar-ms_reader/reader-front
@@ -58,10 +63,15 @@ services:
       - "5174:5173"
     volumes:
       - ./wn-rajar-ms_reader/reader-front:/app
-
+      - reader-front-node_modules:/app/node_modules
     command: npm run dev
     environment :
       - VITE_API_URL=http://reader-back:3000    # url du backend pour l'utiliser au frontend (utiliser le port des conteneurs)
+
   
 volumes:
   wn-database-data:
+  writer-back-node_modules:
+  writer-front-node_modules:
+  reader-back-node_modules:
+  reader-front-node_modules:
